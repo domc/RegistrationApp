@@ -5,7 +5,7 @@
 
         $routeProvider.
           when('/register', {
-              template: '<p>Inside registry form.</p>'
+              template: '<registry-form></registry-form>'
           }).
           otherwise('/register');
     }

@@ -90,6 +90,10 @@
   <ItemGroup>
     <Content Include="app\app.config.js" />
     <Content Include="app\app.module.js" />
+    <Content Include="app\register\registerService.js" />
+    <Content Include="app\register\registry-form.component.js" />
+    <Content Include="app\register\registry-form.module.js" />
+    <Content Include="app\register\registry-form.template.html" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -955,7 +959,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\register\" />
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>

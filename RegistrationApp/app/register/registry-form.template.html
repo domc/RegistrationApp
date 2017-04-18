@@ -1,0 +1,45 @@
+﻿<h2>Registry form:</h2>
+<hr />
+
+<div class="container">
+    <form id="registryForm" name="registryForm" novalidate ng-submit="$ctrl.saveApplicant(createForm.$valid)">
+        <div class="form-group row">
+            <label for="Name" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="Name" name="Name" placeholder="Enter your first name" required data-ng-model="$ctrl.Name" />
+            </div>
+            <span class="col-sm-4 alert alert-danger" role="alert" ng-show="registryForm.Name.$touched && registryForm.Name.$error.required">Please enter your name.</span>
+        </div>
+
+        <div class="form-group row">
+            <label for="LastName" class="col-sm-2 col-form-label">LastName</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="LastName" name="LastName" placeholder="Enter your last name" required data-ng-model="$ctrl.LastName" />
+            </div>
+            <span class="col-sm-4 alert alert-danger" role="alert" ng-show="registryForm.LastName.$touched && registryForm.LastName.$error.required">Please enter your last name.</span>
+        </div>
+
+        <div class="form-group row">
+            <label for="Address" class="col-sm-2 col-form-label">Address</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="Address" name="Address" placeholder="Enter your full home address" required data-ng-model="$ctrl.Address" />
+            </div>
+            <span class="col-sm-4 alert alert-danger" role="alert" ng-show="registryForm.Address.$touched && registryForm.Address.$error.required">Please enter your full home address.</span>
+        </div>
+
+        <div class="form-group row">
+            <label for="DateOfBirth" class="col-sm-2 col-form-label">Date Of Birth</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="Enter your date of birth" required data-ng-model="$ctrl.DateOfBirth" />
+            </div>
+            <span class="col-sm-4 alert alert-danger" role="alert" ng-show="registryForm.DateOfBirth.$touched && registryForm.DateOfBirth.$error.required">Please enter your date of birth.</span>
+        </div>
+
+        <div class="form-group row">
+            <div class="offset-sm-2 col-sm-6">
+                <button type="submit" class="btn btn-secondary" ng-click="submitClicked=true">Register</button>
+            </div>
+            <span class="col-sm-4 alert alert-danger" role="alert" ng-show="submitClicked && registryForm.$invalid">Please fill out the form..</span>
+        </div>
+    </form>
+</div>
