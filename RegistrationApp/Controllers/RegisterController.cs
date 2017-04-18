@@ -37,7 +37,7 @@ namespace RegistrationApp.Controllers
                 ApplicantRegistered registered = new ApplicantRegistered
                 {
                     FullName = registrationForm.Name + " " + registrationForm.LastName,
-                    isDOBFriday=true    //TO DO
+                    isDOBFriday= ((int)registrationForm.DateOfBirth.DayOfWeek == 5) ? true : false //true if DOB is friday
                 };
 
                 //Return status created + response data (Normally also returns the path to created object.)
