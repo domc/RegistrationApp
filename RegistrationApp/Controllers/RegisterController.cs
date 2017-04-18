@@ -56,8 +56,17 @@ namespace RegistrationApp.Controllers
         [ResponseType(typeof(IEnumerable<applicant>))]
         public IHttpActionResult Get()
         {
-            var applicants = db.applicant;
-            return Ok(applicants);
+            //Set up return model(list)
+            var registeredApplicants = from regApplicant in db.applicant
+                          select new RegisterViewModel()
+                          {
+                              Name=regApplicant.Name,
+                              LastName=regApplicant.LastName,
+                              Address=regApplicant.Address,
+                              DateOfBirth=regApplicant.DateOfBirth
+                          };
+
+            return Ok(registeredApplicants);
         }
     }
 }
