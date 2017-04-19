@@ -17,7 +17,6 @@
                   var applicantsAge = self.getAge(this.DateOfBirth);
                   if (applicantsAge >= 21) {
                       //Prepare data for API
-                      //var dob = this.DateOfBirth.toISOString();
                       var applicant = {
                           'Name': this.Name,
                           'LastName': this.LastName,
@@ -25,7 +24,6 @@
                           'DateOfBirth': this.DateOfBirth
                       };
                       Register.save(applicant, function (applicant, ResponseHeaders) {
-                          //Success function
                           self.registeredApplicantName = applicant.FullName;
                           self.registeredApplicantDob = applicant.isDOBFriday;
                           self.formContainer = "formContainer";
@@ -36,13 +34,12 @@
                               self.classFriday = "";
                           }
                       }, function (httpResponse) {
-                          //Error function
                           console.log(httpResponse.status + " " + httpResponse.statusText);
                           self.clearAll();
                       });
                   }
                   else {
-                      //If applicant is under 21 years, deny registration.
+                      //If applicant is under 21 years old, deny registration.
                       alert("You cannot register at this site!");
                       self.clearAll();
                   }
