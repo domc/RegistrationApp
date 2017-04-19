@@ -38,11 +38,10 @@
                     <input type="text" class="form-control" id="DateOfBirth" name="DateOfBirth" placeholder="Enter your date of birth" required data-ng-model="$ctrl.DateOfBirth" />
                 </div>
                 <span class="col-sm-4 alert alert-danger" role="alert" ng-show="registryForm.DateOfBirth.$touched && registryForm.DateOfBirth.$error.required">Please enter your date of birth.</span>
-                <span class="col-sm-4 alert alert-danger" role="alert" ng-show="registryForm.DateOfBirth.$touched && registryForm.DateOfBirth.$error.invalid">Wrong date format.</span>
             </div>
 
             <div class="form-group row">
-                <div class="offset-sm-2 col-sm-6">
+                <div class="col-sm-6 col-sm-offset-2">
                     <button type="submit" class="btn btn-secondary" ng-click="submitClicked=true">Register</button>
                 </div>
                 <span class="col-sm-4 alert alert-danger" role="alert" ng-show="submitClicked && registryForm.$invalid">Please fill out the form..</span>
