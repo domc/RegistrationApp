@@ -2,5 +2,6 @@
 var RegisterApp = angular.module('RegisterApp', [
         'ngRoute',
         'ngResource',
+        'ngMaterial',
         'registryForm'
 ]);

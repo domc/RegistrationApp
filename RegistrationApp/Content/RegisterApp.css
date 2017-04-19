@@ -1,21 +1,20 @@
-﻿/* Styles for "welcome message" */
+﻿/* Main styles*/
+body {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+/* Styles for response - "welcome message" */
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+
 .classFriday {
     background-color: #dff0d8 !important;
 }
 
-.fridayHr{
-    border: 1px solid #8c8b8b;
-    width: 95%;
-    margin-left: 0px !important;
-}
-
 .formContainer {
     font-size: 80%;
-}
-
-/* Alert style fix */
-.alert {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  margin-bottom: 0;
 }

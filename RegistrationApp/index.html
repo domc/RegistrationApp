@@ -4,22 +4,25 @@
     <title>An assignment</title>
 
     <meta charset="utf-8" />
-    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/angular-material.min.css" rel="stylesheet"/>
     <link href="Content/RegisterApp.css" rel="stylesheet" />
 </head>
 <body ng-app="RegisterApp">   
 
     <!-- Body -->
     <div class="container body-content">
-        <div ng-view></div>
+        <div ng-view ng-cloak></div>
     </div>
 
     <!-- Scripts -->
     <script src="Scripts/jquery-3.1.1.min.js"></script>
-    <script src="Scripts/angular.js"></script>
-    <script src="Scripts/angular-route.js"></script>
-    <script src="Scripts/angular-resource.js"></script>
-    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/angular/angular.min.js"></script>
+    <script src="Scripts/angular-route.min.js"></script>
+    <script src="Scripts/angular-resource.min.js"></script>
+    <script src="Scripts/angular-animate/angular-animate.min.js"></script>
+    <script src="Scripts/angular-aria/angular-aria.min.js"></script>
+    <script src="Scripts/angular-messages.min.js"></script>
+    <script src="Scripts/angular-material/angular-material.min.js"></script>
 
     <!-- My scripts -->
     <!-- App -->

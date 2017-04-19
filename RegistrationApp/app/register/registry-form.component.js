@@ -4,6 +4,11 @@
       templateUrl: 'app/register/registry-form.template.html',
       controller: ['Register', function RegistryFormController(Register) {          
           var self = this;
+
+          //Max date value for datepicker.
+          self.maxDate = new Date();
+
+          //Default values for response reaction (when applicant is saved to db).
           self.registeredApplicantName = "";
           self.formContainer = "";
 
@@ -11,6 +16,8 @@
               if (formValidationCheck) {
                   var applicantsAge = self.getAge(this.DateOfBirth);
                   if (applicantsAge >= 21) {
+                      //Prepare data for API
+                      //var dob = this.DateOfBirth.toISOString();
                       var applicant = {
                           'Name': this.Name,
                           'LastName': this.LastName,
@@ -18,6 +25,7 @@
                           'DateOfBirth': this.DateOfBirth
                       };
                       Register.save(applicant, function (applicant, ResponseHeaders) {
+                          //Success function
                           self.registeredApplicantName = applicant.FullName;
                           self.registeredApplicantDob = applicant.isDOBFriday;
                           self.formContainer = "formContainer";
@@ -28,13 +36,15 @@
                               self.classFriday = "";
                           }
                       }, function (httpResponse) {
+                          //Error function
                           console.log(httpResponse.status + " " + httpResponse.statusText);
                           self.clearAll();
                       });
                   }
                   else {
+                      //If applicant is under 21 years, deny registration.
+                      alert("You cannot register at this site!");
                       self.clearAll();
-                      alert("You cannot register at this site!")
                   }
               }
               else {
@@ -42,6 +52,7 @@
               }
           }
 
+          //Delete previous applicants data
           self.clearAll = function () {
               self.registeredApplicantName = "";
               self.classFriday = "";
