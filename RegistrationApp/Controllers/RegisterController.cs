@@ -40,7 +40,7 @@ namespace RegistrationApp.Controllers
                     isDOBFriday= ((int)registrationForm.DateOfBirth.DayOfWeek == 5) ? true : false //true if DOB is friday
                 };
 
-                //Return status created + response data (Normally also returns the path to created object.)
+                //Return status created + response data (Normally also returns the path to created object (CreatedAtRoute).)
                 return Created("", registered);
             }
             else

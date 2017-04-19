@@ -2,8 +2,12 @@
   module('registryForm').
   component('registryForm', {
       templateUrl: 'app/register/registry-form.template.html',
-      controller: ['Register', function RegistryFormController(Register) {
-          this.saveApplicant = function (formValidationCheck) {
+      controller: ['Register', function RegistryFormController(Register) {          
+          var self = this;
+          self.registeredApplicantName = "";
+          self.formContainer = "";
+
+          self.saveApplicant = function (formValidationCheck) {
               if (formValidationCheck) {
                   var applicant = {
                       'Name': this.Name,
@@ -11,10 +15,21 @@
                       'Address': this.Address,
                       'DateOfBirth': this.DateOfBirth
                   };
-                  Register.save(applicant, function (applicant, ResponseHeaders, statusCode, statusText) {
-                      alert(statusCode + " " + statusText);
+                  Register.save(applicant, function (applicant, ResponseHeaders) {
+                      self.registeredApplicantName = applicant.FullName;
+                      self.registeredApplicantDob = applicant.isDOBFriday;
+                      self.formContainer = "formContainer";
+                      if (applicant.isDOBFriday) {
+                          self.classFriday = "classFriday";
+                      }
+                      else {
+                          self.classFriday = "";
+                      }
                   }, function (httpResponse) {
-                      alert(httpResponse.status + " " + httpResponse.statusText);
+                      console.log(httpResponse.status + " " + httpResponse.statusText);
+                      self.registeredApplicantName = "";
+                      self.classFriday = "";
+                      self.formContainer = "";
                   });
               }
           }
