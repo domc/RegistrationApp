@@ -2,7 +2,7 @@
   module('registryForm').
   component('registryForm', {
       templateUrl: 'app/register/registry-form.template.html',
-      controller: ['Register', '$indexedDB', function RegistryFormController(Register, $indexedDB) {
+      controller: ['Register', '$indexedDB', "$filter", function RegistryFormController(Register, $indexedDB, $filter) {
           var self = this;
 
           //Max date value for datepicker.
@@ -18,22 +18,19 @@
                   var applicantsAge = self.getAge(this.DateOfBirth);
                   if (applicantsAge >= 21) {
                       //Prepare data for db
+                      var parsedDate = $filter('date')(this.DateOfBirth, "yyyy-MM-dd");
                       var applicant = {
                           'Name': this.Name,
                           'LastName': this.LastName,
                           'Address': this.Address,
-                          'DateOfBirth': this.DateOfBirth
-                      };                      
-
+                          'DateOfBirth': parsedDate
+                      };
                       //Save data to local MYSQL database
                       Register.save(applicant, function (applicantResponse, ResponseHeaders) {
-                          //Save status of DOB(Friday?) in indexedDB
+                          //Save data (with boolean value for friday check) to indexedDB after the applicant is successfully stored in DB
                           applicant.isDobFriday = applicantResponse.isDOBFriday;
-
-                          //Save data to indexedDB after the applicant is successfully stored in DB
                           self.saveToIndexedDB(applicant);
                       }, function (httpResponse) {
-                          console.log(httpResponse.status + " " + httpResponse.statusText);
                           self.deleteDataFromIndexedDB();
                       });
                   }
@@ -68,11 +65,9 @@
           self.saveToIndexedDB = function (applicant) {
               $indexedDB.openStore('applicants', function (store) {
                   store.clear().then(function () {
-                      //console.log("Cleared indexedDB");
                   });
 
                   store.insert(applicant).then(function (e) {
-                      //console.log("Inserted the applicant into indexedDB");
                   });
 
                   store.getAll().then(function (registeredUsers) {
@@ -97,7 +92,6 @@
               $indexedDB.openStore('applicants', function (store) {
                   store.clear().then(function () {
                       self.registeredApplicant = [];
-                      //console.log("Cleared indexedDB");
                   });
               });
           }

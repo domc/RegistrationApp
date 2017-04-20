@@ -20,9 +20,6 @@ namespace RegistrationApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                //temporary fix (md-datepicker sends wrong value)
-                registrationForm.DateOfBirth=registrationForm.DateOfBirth.AddHours(2);
-
                 //Create entry in DB
                 applicant applicant = new applicant
                 {
