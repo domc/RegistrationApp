@@ -1,11 +1,14 @@
-﻿<div ng-class="$ctrl.classFriday">
-    <div class="container" ng-show="$ctrl.registeredApplicantName != ''">
-        <h2>Hello, <span ng-bind="$ctrl.registeredApplicantName"></span>!</h2>
+﻿<div ng-class="{classFriday: $ctrl.registeredApplicant[0].isDobFriday}">
+    <div class="container" ng-show="$ctrl.registeredApplicant[0] != null">
+        <h2>Hello, {{ $ctrl.registeredApplicant[0].Name+" "+$ctrl.registeredApplicant[0].LastName }}!</h2>
+        <div layout-gt-sm="row" layout-align="end center">
+            <md-button class="md-primary" ng-click="$ctrl.deleteDataFromIndexedDB()">Delete my data from browser</md-button>
+        </div>
     </div>
 
     <!-- Angular Material form -->
-    <md-content layout-padding ng-class="$ctrl.classFriday">
-        <div ng-class="$ctrl.formContainer">
+    <md-content layout-padding ng-class="{classFriday: $ctrl.registeredApplicant[0].isDobFriday}">
+        <div>
             <h4>Registry form</h4>
             <form name="registryForm" novalidate ng-submit="$ctrl.saveApplicant(registryForm.$valid)">
 
@@ -44,7 +47,7 @@
                 </md-input-container>
 
                 <div layout-gt-sm="row" layout-align="end center">
-                    <md-input-container class="md-block" style="float:right;">
+                    <md-input-container class="md-block">
                         <md-button class="md-primary" type="submit">Register</md-button>
                     </md-input-container>
                 </div>
