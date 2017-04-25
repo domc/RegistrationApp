@@ -1,4 +1,4 @@
-﻿<div ng-class="{classFriday: $ctrl.registeredApplicant[0].isDobFriday}">
+﻿<div ng-class="{classFriday: $ctrl.registeredApplicant[2].isDobFriday}">
     <div class="container" ng-show="$ctrl.registeredApplicant[0] != null">
         <h2>Hello, {{ $ctrl.registeredApplicant[0].Name+" "+$ctrl.registeredApplicant[0].LastName }}!</h2>
         <div layout-gt-sm="row" layout-align="end center">
@@ -7,7 +7,7 @@
     </div>
 
     <!-- Angular Material form -->
-    <md-content layout-padding ng-class="{classFriday: $ctrl.registeredApplicant[0].isDobFriday}">
+    <md-content layout-padding ng-class="{classFriday: $ctrl.registeredApplicant[2].isDobFriday}">
         <div>
             <h4>Registry form</h4>
             <form name="registryForm" novalidate ng-submit="$ctrl.saveApplicant(registryForm.$valid)">

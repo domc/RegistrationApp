@@ -91,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\register\registry-form.component.js" />
-    <Content Include="app\register\registry-form.module.js" />
     <Content Include="app\register\registry-form.template.html" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\angular-material.layout-attributes.css" />
@@ -973,6 +972,8 @@
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.config.ts" />
     <TypeScriptCompile Include="app\register\registerService.ts" />
+    <TypeScriptCompile Include="app\register\registry-form.component.ts" />
+    <TypeScriptCompile Include="app\register\registry-form.module.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-animate.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-component-router.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\angularjs\angular-cookies.d.ts" />

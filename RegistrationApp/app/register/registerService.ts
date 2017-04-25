@@ -1,3 +1,18 @@
-﻿RegisterApp.factory('Register', ['$resource', ($resource: ng.resource.IResourceService): ng.resource.IResourceClass<ng.resource.IResource<any>> =>  {
-    return $resource('/api/Register/');
-}]);
+﻿//module app.factories {
+
+    interface IApplicant extends ng.resource.IResource<IApplicant> {
+        Name: string,
+        LastName: string,
+        Address: string,
+        DateOfBirth: Date
+    }
+    interface IApplicantResource extends ng.resource.IResourceClass<IApplicant> {
+    }
+
+    RegisterApp
+        .factory('Register', ['$resource', ($resource: ng.resource.IResourceService): IApplicantResource => {
+            // Return the resource,
+            return <IApplicantResource>$resource('/api/Register/');
+        }])
+
+//}

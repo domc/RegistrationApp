@@ -1,9 +1,9 @@
 var app;
 (function (app) {
     var config;
-    (function (config) {
+    (function (config_1) {
         "use strict";
-        function routes($routeProvider, $locationProvider, $indexedDBProvider) {
+        function config($routeProvider, $locationProvider, $indexedDBProvider) {
             $routeProvider.
                 when('/register', {
                 template: '<registry-form></registry-form>'
@@ -18,8 +18,9 @@ var app;
                 var objStore = db.createObjectStore('applicants', { keyPath: 'ssn', autoIncrement: true });
             });
         }
-        routes.$inject = ["$routeProvider", "$locationProvider", "$indexedDBProvider"];
+        config.$inject = ["$routeProvider", "$locationProvider", "$indexedDBProvider"];
         RegisterApp
-            .config(routes);
+            .config(config);
     })(config = app.config || (app.config = {}));
 })(app || (app = {}));
+//# sourceMappingURL=app.config.js.map

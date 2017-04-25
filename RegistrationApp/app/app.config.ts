@@ -1,7 +1,7 @@
 ﻿module app.config {
     "use strict";
 
-    function routes($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider, $indexedDBProvider) {
+    function config($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider, $indexedDBProvider) {
         $routeProvider.
             when('/register', {
                 template: '<registry-form></registry-form>'
@@ -19,8 +19,8 @@
             });
     }
 
-    routes.$inject = ["$routeProvider", "$locationProvider", "$indexedDBProvider"]
+    config.$inject = ["$routeProvider", "$locationProvider", "$indexedDBProvider"]
 
     RegisterApp
-            .config(routes);
+        .config(config);
 }
