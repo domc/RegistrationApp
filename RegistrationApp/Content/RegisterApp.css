@@ -4,13 +4,13 @@ body {
     margin-right: 5%;
 }
 
-/* Styles for response - "welcome message" */
 .container {
     padding-right: 15px;
     padding-left: 15px;
     padding-top: 15px;
 }
 
+/* Styles for response - "welcome message" */
 .classFriday {
     background-color: #dff0d8 !important;
 }

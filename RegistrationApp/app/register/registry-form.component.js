@@ -29,6 +29,7 @@
                       Register.save(applicant, function (applicantResponse, ResponseHeaders) {
                           //Save data (with boolean value for friday check) to indexedDB after the applicant is successfully stored in DB
                           applicant.isDobFriday = applicantResponse.isDOBFriday;
+                          applicant.DateOfCreation = new Date();
                           self.saveToIndexedDB(applicant);
                       }, function (httpResponse) {
                           self.deleteDataFromIndexedDB();
@@ -64,11 +65,8 @@
           //Saving applicants data in indexedDB
           self.saveToIndexedDB = function (applicant) {
               $indexedDB.openStore('applicants', function (store) {
-                  store.clear().then(function () {
-                  });
-
-                  store.insert(applicant).then(function (e) {
-                  });
+                  store.clear();
+                  store.insert(applicant);
 
                   store.getAll().then(function (registeredUsers) {
                       self.registeredApplicant = registeredUsers;
