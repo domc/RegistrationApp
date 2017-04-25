@@ -13,12 +13,12 @@
 
 
             //Form submission
-            self.saveApplicant = function (formValidationCheck) {
+            self.saveApplicant = function(formValidationCheck: boolean): void {
                 if (formValidationCheck) {
-                    var applicantsAge = self.getAge(this.DateOfBirth);
+                    let applicantsAge = self.getAge(this.DateOfBirth);
                     if (applicantsAge >= 21) {
                         //Prepare data for db
-                        var parsedDate = $filter('date')(this.DateOfBirth, "yyyy-MM-dd");
+                        let parsedDate = $filter('date')(this.DateOfBirth, "yyyy-MM-dd");
 
                         let newApplicant: IApplicant = new Applicant({
                             Name: this.Name,
@@ -28,12 +28,12 @@
                         });
 
                         //Save data to local MYSQL database
-                        Applicant.save(newApplicant, function (applicantResponse, ResponseHeaders) {
+                        Applicant.save(newApplicant, (applicantResponse, ResponseHeaders) => {
                             //Save data to indexedDB after the applicant is successfully stored in DB
                             let isDobFriday = applicantResponse.isDOBFriday;
                             let DateOfCreation = new Date();
                             self.saveToIndexedDB(newApplicant, DateOfCreation, isDobFriday);
-                        }, function (httpResponse) {
+                        }, () => {
                             self.deleteDataFromIndexedDB();
                         });
                     }
@@ -48,16 +48,15 @@
                 }
             }
 
-            self.getAge = function (dateOfBirth) {
-                var dob = new Date(dateOfBirth);
+            self.getAge = function(dateOfBirth: Date): number {
                 var today = new Date();
-                var age = today.getFullYear() - dob.getFullYear();
-                var monthdifference = today.getMonth() - dob.getMonth();
+                var age = today.getFullYear() - dateOfBirth.getFullYear();
+                var monthdifference = today.getMonth() - dateOfBirth.getMonth();
                 if (monthdifference < 0) {
                     age--;
                 }
                 else if (monthdifference == 0) {
-                    if (today.getDate() - dob.getDate() < 0) {
+                    if (today.getDate() - dateOfBirth.getDate() < 0) {
                         age--;
                     }
                 }
@@ -65,23 +64,23 @@
             }
 
             //Saving applicants data in indexedDB
-            self.saveToIndexedDB = function (applicant: IApplicant, DateOfCreation: Date, isDobFriday: boolean) {
-                $indexedDB.openStore('applicants', function (store) {
+            self.saveToIndexedDB = function(applicant: IApplicant, DateOfCreation: Date, isDobFriday: boolean): void {
+                $indexedDB.openStore('applicants', (store) => {
                     store.clear();
                     store.insert(applicant);
                     store.insert({ "DateOfCreation": DateOfCreation });
                     store.insert({ "isDobFriday": isDobFriday });
 
-                    store.getAll().then(function (registeredUsers) {
+                    store.getAll().then( (registeredUsers) => {
                         self.registeredApplicant = registeredUsers;
                     });
                 });
             }
 
             //Get applicant's data from indexedDB
-            self.getDataFromIndexedDB = function () {
-                $indexedDB.openStore('applicants', function (store) {
-                    store.getAll().then(function (registeredUsers) {
+            self.getDataFromIndexedDB = function(): void {
+                $indexedDB.openStore('applicants', (store) => {
+                    store.getAll().then( (registeredUsers) => {
                         self.registeredApplicant = registeredUsers;
                     });
                 });
@@ -90,9 +89,9 @@
             this.getDataFromIndexedDB();
 
             //Delete applicant currently saved in indexedDB
-            self.deleteDataFromIndexedDB = function () {
-                $indexedDB.openStore('applicants', function (store) {
-                    store.clear().then(function () {
+            self.deleteDataFromIndexedDB = function(): void {
+                $indexedDB.openStore('applicants', (store) => {
+                    store.clear().then( () => {
                         self.registeredApplicant = [];
                     });
                 });

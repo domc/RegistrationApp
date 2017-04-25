@@ -27,7 +27,7 @@ angular.
                             var isDobFriday = applicantResponse.isDOBFriday;
                             var DateOfCreation = new Date();
                             self.saveToIndexedDB(newApplicant_1, DateOfCreation, isDobFriday);
-                        }, function (httpResponse) {
+                        }, function () {
                             self.deleteDataFromIndexedDB();
                         });
                     }
@@ -42,15 +42,14 @@ angular.
                 }
             };
             self.getAge = function (dateOfBirth) {
-                var dob = new Date(dateOfBirth);
                 var today = new Date();
-                var age = today.getFullYear() - dob.getFullYear();
-                var monthdifference = today.getMonth() - dob.getMonth();
+                var age = today.getFullYear() - dateOfBirth.getFullYear();
+                var monthdifference = today.getMonth() - dateOfBirth.getMonth();
                 if (monthdifference < 0) {
                     age--;
                 }
                 else if (monthdifference == 0) {
-                    if (today.getDate() - dob.getDate() < 0) {
+                    if (today.getDate() - dateOfBirth.getDate() < 0) {
                         age--;
                     }
                 }
