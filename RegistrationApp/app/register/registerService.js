@@ -1,3 +1,3 @@
-﻿RegisterApp.factory('Register', ['$resource', function ($resource) {
-    return $resource('/api/Register/');
-}]);
+RegisterApp.factory('Register', ['$resource', function ($resource) {
+        return $resource('/api/Register/');
+    }]);

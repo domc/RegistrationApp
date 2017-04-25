@@ -5,4 +5,3 @@ var RegisterApp = angular.module('RegisterApp', [
     'ngMaterial',
     'registryForm'
 ]);
-//# sourceMappingURL=app.module.js.map
