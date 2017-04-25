@@ -1,8 +1,8 @@
-﻿//Define the app module and dependencies
 var RegisterApp = angular.module('RegisterApp', [
-        'ngRoute',
-        'ngResource',
-        'indexedDB',
-        'ngMaterial',
-        'registryForm'
+    'ngRoute',
+    'ngResource',
+    'indexedDB',
+    'ngMaterial',
+    'registryForm'
 ]);
+//# sourceMappingURL=app.module.js.map
