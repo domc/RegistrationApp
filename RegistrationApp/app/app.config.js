@@ -19,8 +19,7 @@ var app;
             });
         }
         config.$inject = ["$routeProvider", "$locationProvider", "$indexedDBProvider"];
-        RegisterApp
-            .config(config);
+        RegisterApp.config(config);
     })(config = app.config || (app.config = {}));
 })(app || (app = {}));
 //# sourceMappingURL=app.config.js.map

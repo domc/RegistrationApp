@@ -1,1 +1,1 @@
-{"version":3,"file":"registerService.js","sourceRoot":"","sources":["registerService.ts"],"names":[],"mappings":"AAAA,wBAAwB;AAWpB,WAAW;KACN,OAAO,CAAC,UAAU,EAAE,CAAC,WAAW,EAAE,UAAC,SAAuC;QACvE,uBAAuB;QACvB,MAAM,CAAqB,SAAS,CAAC,gBAAgB,CAAC,CAAC;IAC3D,CAAC,CAAC,CAAC,CAAA;AAEX,GAAG"}
+{"version":3,"file":"registerService.js","sourceRoot":"","sources":["registerService.ts"],"names":[],"mappings":"AASA,WAAW;KACN,OAAO,CAAC,UAAU,EAAE,CAAC,WAAW,EAAE,UAAC,SAAuC;QACvE,uBAAuB;QACvB,MAAM,CAAqB,SAAS,CAAC,gBAAgB,CAAC,CAAC;IAC3D,CAAC,CAAC,CAAC,CAAA"}

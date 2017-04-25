@@ -21,6 +21,5 @@
 
     config.$inject = ["$routeProvider", "$locationProvider", "$indexedDBProvider"]
 
-    RegisterApp
-        .config(config);
+    RegisterApp.config(config);
 }

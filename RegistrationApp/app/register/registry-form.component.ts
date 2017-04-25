@@ -1,7 +1,7 @@
 ﻿module app.components {
     "use strict";
 
-    export class RegistryFormController {
+    class RegistryFormController {
     	public maxDate: Date;
         public registeredApplicant: any;
         private Applicant: IApplicantResource;
@@ -112,7 +112,6 @@
     }
 
     class RegistryForm implements ng.IComponentOptions {
-
         public controller: any;
         public templateUrl: string;
 

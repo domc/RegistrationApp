@@ -99,7 +99,6 @@ var app;
             ];
             return RegistryFormController;
         }());
-        components.RegistryFormController = RegistryFormController;
         var RegistryForm = (function () {
             function RegistryForm() {
                 this.controller = RegistryFormController;
