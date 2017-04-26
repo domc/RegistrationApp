@@ -12,3 +12,6 @@ optional:
 Create ASP.NET Web Api project.
 Submit button ('Register') should send all the input data to the server in json format
 All the data must be saved in the local database
+
+
+You should create this as Enterprise level application. Use of e2e test, unit tests, TypeScript and Angular Material Design are not required but are preferable. For the optional part you can use any database engine or ORM tool. SOLID or other programming patterns are not required but are preferable.
