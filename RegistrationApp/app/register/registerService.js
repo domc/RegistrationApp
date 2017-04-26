@@ -1,6 +1,9 @@
-RegisterApp
-    .factory('Register', ['$resource', function ($resource) {
-        // Return the resource,
-        return $resource('/api/Register/');
-    }]);
+var registerService;
+(function (registerService) {
+    RegisterApp
+        .factory('Register', ['$resource', function ($resource) {
+            // Return the resource,
+            return $resource('/api/Register/');
+        }]);
+})(registerService || (registerService = {}));
 //# sourceMappingURL=registerService.js.map

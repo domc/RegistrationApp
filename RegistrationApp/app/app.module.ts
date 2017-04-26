@@ -4,4 +4,4 @@
     'indexedDB',
     'ngMaterial',
     'registryForm'
-    ]);
+]);

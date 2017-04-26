@@ -970,6 +970,7 @@
   <ItemGroup>
     <TypeScriptCompile Include="app\app.module.ts" />
     <TypeScriptCompile Include="app\app.config.ts" />
+    <TypeScriptCompile Include="app\register\registerService.d.ts" />
     <TypeScriptCompile Include="app\register\registerService.ts" />
     <TypeScriptCompile Include="app\register\registry-form.component.ts" />
     <TypeScriptCompile Include="app\register\registry-form.module.ts" />

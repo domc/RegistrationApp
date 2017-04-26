@@ -1,4 +1,4 @@
-﻿module app.config {
+﻿namespace app.config {
     "use strict";
 
     function config($routeProvider: ng.route.IRouteProvider, $locationProvider: ng.ILocationProvider, $indexedDBProvider) {

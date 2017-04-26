@@ -1,10 +1,12 @@
-﻿module app.components {
+﻿import regService = require("registerService");
+
+namespace RegistryFormComponent {
     "use strict";
 
     class RegistryFormController {
     	public maxDate: Date;
         public registeredApplicant: any;
-        private Applicant: IApplicantResource;
+        private Applicant: regService.IApplicantResource;
         private $filter: ng.IFilterProvider;
         private $indexedDB: any;
 
@@ -14,7 +16,7 @@
             "$filter"
         ];
 
-        constructor(Applicant: IApplicantResource, $indexedDB, $filter: ng.IFilterProvider) {
+        constructor(Applicant: regService.IApplicantResource, $indexedDB, $filter: ng.IFilterProvider) {
             this.Applicant = Applicant;
             this.$filter = $filter;
             this.$indexedDB = $indexedDB;
@@ -36,7 +38,7 @@
                     //Prepare data for db
                     let parsedDate = this.$filter('date')(this.DateOfBirth, "yyyy-MM-dd");
 
-                    let newApplicant: IApplicant = new this.Applicant({
+                    let newApplicant: regService.IApplicant = new this.Applicant({
                         Name: this.Name,
                         LastName: this.LastName,
                         Address: this.Address,
@@ -79,7 +81,7 @@
             return age;
         }
 
-        private saveToIndexedDB = function (applicant: IApplicant, DateOfCreation: Date, isDobFriday: boolean): void {
+        private saveToIndexedDB = function (applicant: regService.IApplicant, DateOfCreation: Date, isDobFriday: boolean): void {
             this.$indexedDB.openStore('applicants', (store) => {
                 store.clear();
                 store.insert(applicant);
