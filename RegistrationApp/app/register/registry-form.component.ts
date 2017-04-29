@@ -66,15 +66,16 @@ namespace RegistryFormComponent {
             }
         }
 
-        private getAge = function (dateOfBirth: Date): number {
+        private getAge = function (dateOfBirth: string): number {
+            var dob = new Date(dateOfBirth);
             var today = new Date();
-            var age = today.getFullYear() - dateOfBirth.getFullYear();
-            var monthdifference = today.getMonth() - dateOfBirth.getMonth();
+            var age = today.getFullYear() - dob.getFullYear();
+            var monthdifference = today.getMonth() - dob.getMonth();
             if (monthdifference < 0) {
                 age--;
             }
             else if (monthdifference == 0) {
-                if (today.getDate() - dateOfBirth.getDate() < 0) {
+                if (today.getDate() - dob.getDate() < 0) {
                     age--;
                 }
             }

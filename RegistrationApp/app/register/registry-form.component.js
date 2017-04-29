@@ -38,14 +38,15 @@ var RegistryFormComponent;
                 }
             };
             this.getAge = function (dateOfBirth) {
+                var dob = new Date(dateOfBirth);
                 var today = new Date();
-                var age = today.getFullYear() - dateOfBirth.getFullYear();
-                var monthdifference = today.getMonth() - dateOfBirth.getMonth();
+                var age = today.getFullYear() - dob.getFullYear();
+                var monthdifference = today.getMonth() - dob.getMonth();
                 if (monthdifference < 0) {
                     age--;
                 }
                 else if (monthdifference == 0) {
-                    if (today.getDate() - dateOfBirth.getDate() < 0) {
+                    if (today.getDate() - dob.getDate() < 0) {
                         age--;
                     }
                 }
@@ -107,4 +108,3 @@ var RegistryFormComponent;
     }());
     angular.module('registryForm').component('registryForm', new RegistryForm());
 })(RegistryFormComponent || (RegistryFormComponent = {}));
-//# sourceMappingURL=registry-form.component.js.map
