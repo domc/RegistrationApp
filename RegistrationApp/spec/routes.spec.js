@@ -17,6 +17,7 @@
     //tests
     it("should navigate to register form..", function () {
         // navigate using $apply to safely run the $digest cycle
+        // Use $apply instead of $digest as it wraps your code inside a try/catch besides also calling $digest
         $rootScope.$apply(function () {
             $location.path('/register');
         });
