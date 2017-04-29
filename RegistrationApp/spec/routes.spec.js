@@ -1,5 +1,5 @@
 ﻿describe("Testing routes...", function () {
-    var $route, $rootScope, $location, $httpBackend;
+    var $route, $rootScope, $location;
 
     beforeEach(function () {
         module("RegisterApp");
@@ -8,9 +8,6 @@
             $route = $injector.get('$route');
             $rootScope = $injector.get('$rootScope');
             $location = $injector.get('$location');
-            $httpBackend = $injector.get('$httpBackend');
-
-            $httpBackend.when('GET', '<registry-form></registry-form>').respond('register');
         })
     })
 
