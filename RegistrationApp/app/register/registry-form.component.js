@@ -3,7 +3,7 @@ var RegistryFormComponent;
 (function (RegistryFormComponent) {
     "use strict";
     var RegistryFormController = (function () {
-        function RegistryFormController(Applicant, $indexedDB, $filter) {
+        function RegistryFormController(Applicant, $indexedDB, $filter, localDB) {
             this.saveApplicant = function (formValidationCheck) {
                 var _this = this;
                 if (formValidationCheck) {
@@ -22,7 +22,13 @@ var RegistryFormComponent;
                             //Save data to indexedDB after the applicant is successfully stored in DB
                             var isDobFriday = applicantResponse.isDOBFriday;
                             var DateOfCreation = new Date();
-                            _this.saveToIndexedDB(newApplicant_1, DateOfCreation, isDobFriday);
+                            //Clear indexedDB
+                            _this.deleteDataFromIndexedDB();
+                            //Save current applicant
+                            var arrToSave = [newApplicant_1, { "DateOfCreation": DateOfCreation }, { "isDobFriday": isDobFriday }];
+                            _this.localDB.saveToIndexedDB(arrToSave);
+                            //Refresh view
+                            _this.getDataFromIndexedDB();
                         }, function () {
                             _this.deleteDataFromIndexedDB();
                         });
@@ -52,39 +58,22 @@ var RegistryFormComponent;
                 }
                 return age;
             };
-            this.saveToIndexedDB = function (applicant, DateOfCreation, isDobFriday) {
-                var _this = this;
-                this.$indexedDB.openStore('applicants', function (store) {
-                    store.clear();
-                    store.insert(applicant);
-                    store.insert({ "DateOfCreation": DateOfCreation });
-                    store.insert({ "isDobFriday": isDobFriday });
-                    store.getAll().then(function (registeredUsers) {
-                        _this.registeredApplicant = registeredUsers;
-                    });
-                });
-            };
             //Get applicant's data from indexedDB
             this.getDataFromIndexedDB = function () {
                 var _this = this;
-                this.$indexedDB.openStore('applicants', function (store) {
-                    store.getAll().then(function (registeredUsers) {
-                        _this.registeredApplicant = registeredUsers;
-                    });
+                this.localDB.getDataFromIndexedDB().then(function (data) {
+                    _this.registeredApplicant = data;
                 });
             };
             //Delete applicant currently saved in indexedDB
             this.deleteDataFromIndexedDB = function () {
-                var _this = this;
-                this.$indexedDB.openStore('applicants', function (store) {
-                    store.clear().then(function () {
-                        _this.registeredApplicant = [];
-                    });
-                });
+                this.localDB.deleteDataFromIndexedDB();
+                this.registeredApplicant = [];
             };
             this.Applicant = Applicant;
             this.$filter = $filter;
             this.$indexedDB = $indexedDB;
+            this.localDB = localDB;
             //Max date value for datepicker.
             this.maxDate = new Date();
             //Registered user(s) retrieved from indexedDB, empty by default
@@ -95,7 +84,8 @@ var RegistryFormComponent;
         RegistryFormController.$inject = [
             'Register',
             '$indexedDB',
-            "$filter"
+            "$filter",
+            'localDB'
         ];
         return RegistryFormController;
     }());

@@ -9,17 +9,20 @@ namespace RegistryFormComponent {
         private Applicant: regService.IApplicantResource;
         private $filter: ng.IFilterProvider;
         private $indexedDB: any;
+        private localDB: any;
 
     	public static $inject = [
             'Register',
             '$indexedDB',
-            "$filter"
+            "$filter",
+            'localDB'
         ];
 
-        constructor(Applicant: regService.IApplicantResource, $indexedDB, $filter: ng.IFilterProvider) {
+        constructor(Applicant: regService.IApplicantResource, $indexedDB, $filter: ng.IFilterProvider, localDB) {
             this.Applicant = Applicant;
             this.$filter = $filter;
             this.$indexedDB = $indexedDB;
+            this.localDB = localDB;
 
             //Max date value for datepicker.
             this.maxDate = new Date();
@@ -49,8 +52,17 @@ namespace RegistryFormComponent {
                     this.Applicant.save(newApplicant, (applicantResponse, ResponseHeaders) => {
                         //Save data to indexedDB after the applicant is successfully stored in DB
                         let isDobFriday = applicantResponse.isDOBFriday;
-                        let DateOfCreation = new Date();
-                        this.saveToIndexedDB(newApplicant, DateOfCreation, isDobFriday);
+                        let DateOfCreation = new Date();                        
+
+                        //Clear indexedDB
+                        this.deleteDataFromIndexedDB();
+
+                        //Save current applicant
+                        let arrToSave = [newApplicant, { "DateOfCreation": DateOfCreation }, { "isDobFriday": isDobFriday }];
+                        this.localDB.saveToIndexedDB(arrToSave);
+
+                        //Refresh view
+                        this.getDataFromIndexedDB();
                     }, () => {
                         this.deleteDataFromIndexedDB();
                     });
@@ -82,36 +94,18 @@ namespace RegistryFormComponent {
             return age;
         }
 
-        private saveToIndexedDB = function (applicant: regService.IApplicant, DateOfCreation: Date, isDobFriday: boolean): void {
-            this.$indexedDB.openStore('applicants', (store) => {
-                store.clear();
-                store.insert(applicant);
-                store.insert({ "DateOfCreation": DateOfCreation });
-                store.insert({ "isDobFriday": isDobFriday });
-
-                store.getAll().then((registeredUsers) => {
-                    this.registeredApplicant = registeredUsers;
-                });
-            });
-        }
-
         //Get applicant's data from indexedDB
-        private getDataFromIndexedDB = function (): void {
-            this.$indexedDB.openStore('applicants', (store) => {
-                store.getAll().then((registeredUsers) => {
-                    this.registeredApplicant = registeredUsers;
-                });
+        private getDataFromIndexedDB = function (): void {            
+            this.localDB.getDataFromIndexedDB().then((data) => {
+                this.registeredApplicant = data;
             });
         }
 
         //Delete applicant currently saved in indexedDB
         public deleteDataFromIndexedDB = function (): void {
-            this.$indexedDB.openStore('applicants', (store) => {
-                store.clear().then(() => {
-                    this.registeredApplicant = [];
-                });
-            });
-        }
+            this.localDB.deleteDataFromIndexedDB();
+            this.registeredApplicant = [];
+        };
     }
 
     class RegistryForm implements ng.IComponentOptions {
