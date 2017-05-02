@@ -96,4 +96,3 @@ var RegistryFormComponent;
     }());
     angular.module('registryForm').component('registryForm', new RegistryForm());
 })(RegistryFormComponent || (RegistryFormComponent = {}));
-//# sourceMappingURL=registry-form.component.js.map

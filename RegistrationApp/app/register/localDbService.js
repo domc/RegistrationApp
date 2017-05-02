@@ -1,28 +1,30 @@
-﻿'use strict';
-
-RegisterApp.
-      service('localDB', ['$indexedDB',
-        function ($indexedDB) {
-
+var localDbService;
+(function (localDbService_1) {
+    var localDbService = (function () {
+        function localDbService($indexedDB) {
             this.deleteDataFromIndexedDB = function () {
-                $indexedDB.openStore('applicants', (store) => {
+                this.indexedDBprovider.openStore('applicants', function (store) {
                     store.clear();
                 });
-            }
-
+            };
             this.getDataFromIndexedDB = function () {
-                return $indexedDB.openStore('applicants', (store) => {
-                    return store.getAll().then((registeredUsers) => {
+                return this.indexedDBprovider.openStore('applicants', function (store) {
+                    return store.getAll().then(function (registeredUsers) {
                         return registeredUsers;
                     });
                 });
-            }
-
+            };
             this.saveToIndexedDB = function (data) {
-                $indexedDB.openStore('applicants', (store) => {
-                    store.insert(data).then(function () {
-                    });
+                this.indexedDBprovider.openStore('applicants', function (store) {
+                    store.insert(data);
                 });
-            }
+            };
+            this.indexedDBprovider = $indexedDB;
         }
-  ]);
+        localDbService.$inject = ['$indexedDB'];
+        return localDbService;
+    }());
+    localDbService_1.localDbService = localDbService;
+    RegisterApp.
+        service('localDB', localDbService);
+})(localDbService || (localDbService = {}));
