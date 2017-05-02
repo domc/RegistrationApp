@@ -8,20 +8,17 @@ namespace RegistryFormComponent {
         public registeredApplicant: any;
         private Applicant: regService.IApplicantResource;
         private $filter: ng.IFilterProvider;
-        private $indexedDB: any;
         private localDB: any;
 
     	public static $inject = [
             'Register',
-            '$indexedDB',
             "$filter",
             'localDB'
         ];
 
-        constructor(Applicant: regService.IApplicantResource, $indexedDB, $filter: ng.IFilterProvider, localDB) {
+        constructor(Applicant: regService.IApplicantResource, $filter: ng.IFilterProvider, localDB) {
             this.Applicant = Applicant;
             this.$filter = $filter;
-            this.$indexedDB = $indexedDB;
             this.localDB = localDB;
 
             //Max date value for datepicker.

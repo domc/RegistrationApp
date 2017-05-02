@@ -91,7 +91,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\register\localDbService.js" />
-    <Content Include="app\register\localDbService.module.js" />
     <Content Include="app\register\registry-form.template.html" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\angular-material.layout-attributes.css" />

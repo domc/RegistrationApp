@@ -22,3 +22,4 @@ var app;
         RegisterApp.config(config);
     })(config = app.config || (app.config = {}));
 })(app || (app = {}));
+//# sourceMappingURL=app.config.js.map

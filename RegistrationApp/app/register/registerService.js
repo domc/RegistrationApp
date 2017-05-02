@@ -6,3 +6,4 @@ var registerService;
             return $resource('/api/Register/');
         }]);
 })(registerService || (registerService = {}));
+//# sourceMappingURL=registerService.js.map

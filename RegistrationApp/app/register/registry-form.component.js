@@ -3,7 +3,7 @@ var RegistryFormComponent;
 (function (RegistryFormComponent) {
     "use strict";
     var RegistryFormController = (function () {
-        function RegistryFormController(Applicant, $indexedDB, $filter, localDB) {
+        function RegistryFormController(Applicant, $filter, localDB) {
             this.saveApplicant = function (formValidationCheck) {
                 var _this = this;
                 if (formValidationCheck) {
@@ -72,7 +72,6 @@ var RegistryFormComponent;
             };
             this.Applicant = Applicant;
             this.$filter = $filter;
-            this.$indexedDB = $indexedDB;
             this.localDB = localDB;
             //Max date value for datepicker.
             this.maxDate = new Date();
@@ -83,7 +82,6 @@ var RegistryFormComponent;
         }
         RegistryFormController.$inject = [
             'Register',
-            '$indexedDB',
             "$filter",
             'localDB'
         ];
@@ -98,3 +96,4 @@ var RegistryFormComponent;
     }());
     angular.module('registryForm').component('registryForm', new RegistryForm());
 })(RegistryFormComponent || (RegistryFormComponent = {}));
+//# sourceMappingURL=registry-form.component.js.map
